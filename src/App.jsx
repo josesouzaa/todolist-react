@@ -1,5 +1,13 @@
-function App() {
-  return <h1>Hello World</h1>
-}
+import { NewTaskInput } from './components/NewTaskInput'
+import { TasksList } from './components/TasksList'
+import { TasksProvider } from './hooks/useTasksContext'
 
-export default App
+export function App() {
+  return (
+    <TasksProvider>
+      <h1>Todo List</h1>
+      <NewTaskInput />
+      <TasksList />
+    </TasksProvider>
+  )
+}

@@ -1,5 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useTasks } from '../../hooks/useTasksContext'
 
 export function NewTaskInput() {
-  return <div>NewTaksInput</div>
+  const { allTasks, AtualizeAllTasks, newIdGenerator } = useTasks()
+  const [newTaskText, setNewTaskText] = useState('')
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    if (!newTaskText.match(/^\s*$/)) {
+      const newTask = {
+        id: newIdGenerator(),
+        title: newTaskText,
+        isComplete: false
+      }
+      AtualizeAllTasks([newTask, ...allTasks])
+      setNewTaskText('')
+    }
+  }
+
+  return (
+    <form action="submit" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="O que preciso fazer hoje?"
+        value={newTaskText}
+        onChange={(event) => setNewTaskText(event.target.value)}
+      />
+      <button type="submit">Adicionar</button>
+    </form>
+  )
 }
