@@ -1,6 +1,8 @@
 import React from 'react'
 import { useTasks } from '../../hooks/useTasksContext'
+
 import { TaskContent } from './styles'
+import deleteImg from '../../assets/delete.svg'
 
 export function Task({ task }) {
   const { allTasks, AtualizeAllTasks } = useTasks()
@@ -30,7 +32,7 @@ export function Task({ task }) {
       />
       <strong>{task.title}</strong>
       <button type="button" onClick={handleDelete}>
-        Deletar
+        <img src={deleteImg} alt="Deletar" />
       </button>
     </TaskContent>
   )

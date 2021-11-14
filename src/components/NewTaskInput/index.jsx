@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useTasks } from '../../hooks/useTasksContext'
 
+import { Container } from './styles'
+
 export function NewTaskInput() {
   const { allTasks, AtualizeAllTasks, newIdGenerator } = useTasks()
   const [newTaskText, setNewTaskText] = useState('')
@@ -19,7 +21,7 @@ export function NewTaskInput() {
   }
 
   return (
-    <form action="submit" onSubmit={handleSubmit}>
+    <Container action="submit" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="O que preciso fazer hoje?"
@@ -27,6 +29,6 @@ export function NewTaskInput() {
         onChange={(event) => setNewTaskText(event.target.value)}
       />
       <button type="submit">Adicionar</button>
-    </form>
+    </Container>
   )
 }
